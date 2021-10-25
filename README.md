@@ -1,3 +1,5 @@
+# Small Change For The Sake Of Change
+
 # Phase 3 Project Guidelines
 
 ## Learning Goals
