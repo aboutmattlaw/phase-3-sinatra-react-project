@@ -1,9 +1,9 @@
 puts "Seeing Users"
-User.create(username: "Albert", email: "albert@gmail.com")
-User.create(username: "Betty", email: "betty@gmail.com")
-User.create(username: "Carlton", email: "carlton@gmail.com")
-User.create(username: "Deb", email: "deb@gmail.com")
-User.create(username: "Ed", email: "ed@gmail.com")
+User.create(username: "Albert", email: "albert@gmail.com", password: "password124")
+User.create(username: "Betty", email: "betty@gmail.com", password: "password124")
+User.create(username: "Carlton", email: "carlton@gmail.com", password: "password124")
+User.create(username: "Deb", email: "deb@gmail.com", password: "password124")
+User.create(username: "Ed", email: "ed@gmail.com", password: "password124")
 
 puts "Seeing Coins"
 Coin.create(name: "Bitcoin", symbol: "BTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "bitcoin" )
