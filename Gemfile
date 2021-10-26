@@ -33,6 +33,7 @@ gem "sqlite3", "~> 1.4"
 
 # user login
 gem 'bcrypt'
+gem 'jwt'
 
 # Require all files in a folder
 gem "require_all", "~> 3.0"
