@@ -7,6 +7,10 @@ User.create(username: "Ed", email: "ed@gmail.com")
 
 puts "Seeing Coins"
 Coin.create(name: "Bitcoin", symbol: "BTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "bitcoin" )
+puts "Seeing Coins"
+Coin.create(name: "Citcoin", symbol: "CTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "citcoin" )
+puts "Seeing Coins"
+Coin.create(name: "Ditcoin", symbol: "DTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "ditcoin" )
 
 
 
