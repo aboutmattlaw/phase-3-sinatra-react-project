@@ -12,6 +12,8 @@ Coin.create(name: "Bitcoin", symbol: "BTC", image_url: "https://assets.coingecko
 
 puts "Seeing Favorites"
 Favorite.create(user_id: 1, coin_id: 1)
+Favorite.create(user_id: 2, coin_id: 2)
+Favorite.create(user_id: 3, coin_id: 3)
 
 
 puts "Seeing Friendships"

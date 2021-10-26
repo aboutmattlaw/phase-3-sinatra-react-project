@@ -1,6 +1,6 @@
 class Favorite < ActiveRecord::Base
-    belongs_to :users
     belongs_to :coins
+    belongs_to :users
 end
 
 
