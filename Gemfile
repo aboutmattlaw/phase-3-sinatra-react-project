@@ -35,6 +35,9 @@ gem "sqlite3", "~> 1.4"
 gem 'bcrypt'
 gem 'jwt'
 
+# seed 
+ gem 'rest-client'
+
 # Require all files in a folder
 gem "require_all", "~> 3.0"
 

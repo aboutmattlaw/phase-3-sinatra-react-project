@@ -87,6 +87,14 @@ class ApplicationController < Sinatra::Base
   end
 
 
+  post '/users' do #creates a new user (works)
+    user = User.create(username: params[:username], email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    user.to_json
+  end
+
+
+
 # Friendship
 
   get '/friendships' do #shows all friendships (works)
@@ -109,6 +117,15 @@ class ApplicationController < Sinatra::Base
     friendship.destroy
   end
 
+
+  # post '/login' do
+  #   login = User.find_by(params[:username])
+  #   if user && user.authenticate(params[:password])
+  #     session[:user_id] = user.id
+  #     redirect '/'
+  #   else puts "woof"
+  #   end
+  # end
 
 end
 
