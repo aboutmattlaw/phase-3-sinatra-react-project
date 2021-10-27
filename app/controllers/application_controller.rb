@@ -8,12 +8,12 @@ class ApplicationController < Sinatra::Base
 
 # COINS
 
-  get '/coins' do #shows all coins
+  get '/coins' do #shows all coins (works)
     coins = Coin.all
     coins.to_json
   end
 
-  get '/coins/:id' do #shows specific coin
+  get '/coins/:id' do #shows specific coin (works)
     coins = Coin.find(params[:id])
     coins.to_json
   end
@@ -23,24 +23,25 @@ class ApplicationController < Sinatra::Base
 
 # FAVES
   
-  get '/favorites' do #shows all faves
+  get '/favorites' do #shows all faves (works)
     favorites = Favorite.all
     favorites.to_json
+    
   end
 
-  get '/favorites/:id' do #shows specific fave
+  get '/favorites/:id' do #shows specific fave (works)
     favorites = Favorite.find(params[:id])
     favorites.to_json
   end
 
   get '/favorites/byuser/:user_id' do #shows faves of a user... WIP
-    favorites = Favorite.find_by(params[:user_id])
+    favorites = Favorite.select{ |fave| fave[:user_id] == params[:user_id] }
     favorites.to_json
   end
 
   
   
-  post '/favorites' do #creates fave
+  post '/favorites' do #creates fave (works)
     favorites = Favorite.create(user_id: params[:user_id], coin_id: params[:coin_id])
     favorites.to_json
   end
@@ -49,52 +50,61 @@ class ApplicationController < Sinatra::Base
   # USERS 
 
 
-  get '/users' do #shows all users
+  get '/users' do #shows all users (works)
     users = User.all
     users.to_json
   end
 
 
-  get '/users/:id' do #shows specific user
+  get '/users/:id' do #shows specific user (works)
     users = User.find(params[:id])
     users.to_json
   end
 
-  get '/users/:id/favorites' do #shows specific user
-    users = User.(params[:id]).favorites
+  get '/users/:id/favorites' do #shows specific user (works)
+    users = User.find(params[:id]).coins
     users.to_json
   end
 
+  get '/users/:id/friends' do #shows specific user's friends they reached out to (works)
+    friendees = User.find(params[:id]).friendees
+    friendees.to_json
+  end
   
 
-  post '/users' do #creates a new user
+
+  get '/users/:id/frienders' do #shows people who reached out to specfic friend (works)
+    frienders = User.find(params[:id]).frienders
+    frienders.to_json
+  end
+  
+  
+  
+  post '/users' do #creates a new user (works)
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
+    session[:user_id] = user.id
     user.to_json
   end
 
 
+# Friendship
 
-  # get '/myfriendees' do #shows all my friendees
-  #   friendees = self.friendees
-  #   friendship.to_json
-  # end
-
-  get '/friendships' do #shows all friendships
+  get '/friendships' do #shows all friendships (works)
     friendship = Friendship.all
     friendship.to_json
   end 
   
-  get '/friendship/:id' do #shows friendships for a user
-    friendship = Friendship.find(params[:id])
-    friendship.to_json
-  end
+  # get '/friendship/:id' do #shows friendships for a user
+  #   friendship = Friendship.find(params[:id]).friendees
+  #   friendship.to_json
+  # end
 
-  post '/friendships' do #makes new friendships
+  post '/friendships' do #makes new friendships (works)
     friendship = Friendship.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
     friendship.to_json
   end  
 
-  delete '/friendship/:id' do #deletes specific friendships
+  delete '/friendship/:id' do #deletes specific friendships (works)
     friendship = Friendship.find(params[:id])
     friendship.destroy
   end
@@ -104,26 +114,13 @@ end
 
 
 
-  # get '/signup' do
-  #   "Signup Hello World"
-  # end
-
-
-
 
 
 
   
-#   # configure do
-#   #   enable :sessions
-#   #   set :session_secret, "secret"
-#   # end
+  configure do
+    enable :sessions
+    set :session_secret, "secret"
+  end
 
-
-
-
-
-# post "login" path to auth_controller "create" method
-# get "logged_in?" path to application_controller "logged_in?" method
-# users_controller create method before_action :authentication
 
