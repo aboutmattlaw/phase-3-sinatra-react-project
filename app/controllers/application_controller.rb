@@ -13,7 +13,6 @@ class ApplicationController < Sinatra::Base
     coins.to_json
   end
 
-
   get '/coins/:id' do #shows specific coin
     coins = Coin.find(params[:id])
     coins.to_json
@@ -34,8 +33,8 @@ class ApplicationController < Sinatra::Base
     favorites.to_json
   end
 
-  get '/favorites/byuser/:user_id' do #shows faves of a user
-    favorites = Favorite.find(params[:user_id])
+  get '/favorites/byuser/:user_id' do #shows faves of a user... WIP
+    favorites = Favorite.find_by(params[:user_id])
     favorites.to_json
   end
 
@@ -61,7 +60,13 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
+  get '/users/:id/favorites' do #shows specific user
+    users = User.(params[:id]).favorites
+    users.to_json
+  end
+
   
+
   post '/users' do #creates a new user
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
     user.to_json
@@ -69,22 +74,33 @@ class ApplicationController < Sinatra::Base
 
 
 
-  get '/friendship' do #shows all friendships
+  # get '/myfriendees' do #shows all my friendees
+  #   friendees = self.friendees
+  #   friendship.to_json
+  # end
+
+  get '/friendships' do #shows all friendships
     friendship = Friendship.all
     friendship.to_json
-  end
-
-
-  get '/friendship/:id' do #shows all friendships
+  end 
+  
+  get '/friendship/:id' do #shows friendships for a user
     friendship = Friendship.find(params[:id])
     friendship.to_json
   end
 
+  post '/friendships' do #makes new friendships
+    friendship = Friendship.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
+    friendship.to_json
+  end  
 
-  # get '/myfriends' do
-  #   myfriend = myfriends
-  #   myfriend.to_json
-  # end
+  delete '/friendship/:id' do #deletes specific friendships
+    friendship = Friendship.find(params[:id])
+    friendship.destroy
+  end
+
+
+end
 
 
 
@@ -92,7 +108,6 @@ class ApplicationController < Sinatra::Base
   #   "Signup Hello World"
   # end
 
-end
 
 
 
@@ -106,4 +121,9 @@ end
 
 
 
+
+
+# post "login" path to auth_controller "create" method
+# get "logged_in?" path to application_controller "logged_in?" method
+# users_controller create method before_action :authentication
 
