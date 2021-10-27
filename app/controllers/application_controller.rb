@@ -8,32 +8,35 @@ class ApplicationController < Sinatra::Base
 
 # COINS
 
-  get '/coins' do
+  get '/coins' do #shows all coins
     coins = Coin.all
     coins.to_json
   end
 
 
-  get '/coins/:id' do
+  get '/coins/:id' do #shows specific coin
     coins = Coin.find(params[:id])
     coins.to_json
   end
 
+
+
+
 # FAVES
   
-  get '/favorites' do
+  get '/favorites' do #shows all faves
     favorites = Favorite.all
     favorites.to_json
   end
 
-  get '/favorites/:id' do
+  get '/favorites/:id' do #shows specific fave
     favorites = Favorite.find(params[:id])
     favorites.to_json
   end
 
 
-  post '/favorites' do
-    favorites = Favorites.create(user_id: params[:user_id], coin_id: params[:coin_id])
+  post '/favorites' do #creates fave
+    favorites = Favorite.create(user_id: params[:user_id], coin_id: params[:coin_id])
     favorites.to_json
   end
 
@@ -41,22 +44,41 @@ class ApplicationController < Sinatra::Base
   # USERS 
 
 
-  get '/users' do
+  get '/users' do #shows all users
     users = User.all
     users.to_json
   end
 
 
-  get '/users/:id' do
+  get '/users/:id' do #shows specific user
     users = User.find(params[:id])
     users.to_json
   end
 
   
-  post '/users' do
+  post '/users' do #creates a new user
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
     user.to_json
   end
+
+
+
+  get '/friendship' do #shows all friendships
+    friendship = Friendship.all
+    friendship.to_json
+  end
+
+
+  get '/friendship/:id' do #shows all friendships
+    friendship = Friendship.find(params[:id])
+    friendship.to_json
+  end
+
+
+  # get '/myfriends' do
+  #   myfriend = myfriends
+  #   myfriend.to_json
+  # end
 
 
 
