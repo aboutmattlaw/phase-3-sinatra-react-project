@@ -34,7 +34,13 @@ class ApplicationController < Sinatra::Base
     favorites.to_json
   end
 
+  get '/favorites/byuser/:user_id' do #shows faves of a user
+    favorites = Favorite.find(params[:user_id])
+    favorites.to_json
+  end
 
+  
+  
   post '/favorites' do #creates fave
     favorites = Favorite.create(user_id: params[:user_id], coin_id: params[:coin_id])
     favorites.to_json
