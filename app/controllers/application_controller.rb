@@ -18,6 +18,11 @@ class ApplicationController < Sinatra::Base
     coins.to_json
   end
 
+  get '/coin/:id/users' do
+    coins = Coin.find(params[:id]).users
+    coins.to_json
+  end
+
 
 
 
@@ -26,7 +31,6 @@ class ApplicationController < Sinatra::Base
   get '/favorites' do #shows all faves (works)
     favorites = Favorite.all
     favorites.to_json
-    
   end
 
   get '/favorites/:id' do #shows specific fave (works)
@@ -131,6 +135,15 @@ class ApplicationController < Sinatra::Base
   #   else puts "woof"
   #   end
   # end
+
+
+  # post '/users' do #creates a new user (works)
+  #   user = User.create(username: params[:username], email: params[:email], password: params[:password])
+  #   session[:user_id] = user.id
+  #   user.to_json
+
+
+
 
 end
 

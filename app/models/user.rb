@@ -12,7 +12,16 @@ class User < ActiveRecord::Base
     validates :username, :email, uniqueness: { case_sensitive: false }
         
     def notfriends
-        self.friendees
+        
     end
 
 end
+
+
+# id	friender_id	friendee_id
+# 1	1	2
+# 2	2	3
+# 3	4	5
+# 4	5	1
+# 5	5	2
+# 6	5	
