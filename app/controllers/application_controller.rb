@@ -117,6 +117,11 @@ class ApplicationController < Sinatra::Base
     friendship.destroy
   end
 
+  # get '/logout' do
+  #   session.clear
+  # end
+
+
 
   # post '/login' do
   #   login = User.find_by(params[:username])
