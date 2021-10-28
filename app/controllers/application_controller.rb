@@ -61,7 +61,7 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
-  get '/users/:id/favorites' do #shows specific user (works)
+  get '/users/:id/favorites' do #shows specific user's fave coins (works)
     users = User.find(params[:id]).coins
     users.to_json
   end
@@ -117,9 +117,9 @@ class ApplicationController < Sinatra::Base
     friendship.destroy
   end
 
-  # get '/logout' do
-  #   session.clear
-  # end
+  get '/logout' do
+    session.clear
+  end
 
 
 
