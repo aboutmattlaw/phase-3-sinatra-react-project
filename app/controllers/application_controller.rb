@@ -141,3 +141,16 @@ end
   end
 
 
+
+
+
+
+
+
+#   useEffect(() => {
+#     const currentUserId = localStorage.user_id
+
+#   fetch(`http://localhost:9292/users/${currentUserId}/favorites`)
+#   .then((r) => r.json())
+#   .then((data) => setMyCoinList(data));
+# }, []);
