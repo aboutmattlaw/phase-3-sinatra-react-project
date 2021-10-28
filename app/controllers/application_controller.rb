@@ -76,11 +76,21 @@ class ApplicationController < Sinatra::Base
   end
   
 
+  get '/users/:id/notfriends' do #shows specific user's friends they reached out to (works)
+    friendees = User.find(params[:id]).not_my_friend
+    friendees.to_json
+  end
+  
+
+
 
   get '/users/:id/frienders' do #shows people who reached out to specfic friend (works)
     frienders = User.find(params[:id]).frienders
     frienders.to_json
   end
+
+
+  
   
   
   

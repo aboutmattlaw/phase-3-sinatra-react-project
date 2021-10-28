@@ -21,6 +21,15 @@ def not_my_friend
 end 
 
 
+def not_my_coins
+    # shows coins a user has yet to favorites
+    all_coins = Coin.all
+    all_of_my_coins = self.coins
+    not_coins = all_coins - all_of_my_coins
+end 
+
+
+
 end
 
 
