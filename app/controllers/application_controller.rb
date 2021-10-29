@@ -18,6 +18,10 @@ class ApplicationController < Sinatra::Base
     coins.to_json
   end
 
+
+
+# USE THIS TO SHOW USERS ON THE COIN LIST
+
   get '/coin/:id/users' do
     coins = Coin.find(params[:id]).users
     coins.to_json
@@ -65,10 +69,18 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
+
+
+# USE THIS TO BUILD THE FRIEND BOXES
+
   get '/users/:id/favorites' do #shows specific user's fave coins (works)
     users = User.find(params[:id]).coins
     users.to_json
   end
+
+
+
+
 
   get '/users/:id/friends' do #shows specific user's friends they reached out to (works)
     friendees = User.find(params[:id]).friendees
@@ -123,7 +135,8 @@ class ApplicationController < Sinatra::Base
 
   post '/friendships' do #makes new friendships (works)
     friendship = Friendship.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
-    friendship.to_json
+    user = User.find(friendship.friendee_id)
+    user.to_json
   end  
 
   delete '/friendship/:id' do #deletes specific friendships (works)
