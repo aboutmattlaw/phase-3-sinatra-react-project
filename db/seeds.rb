@@ -5,14 +5,14 @@ Coin.destroy_all
 
 
 
-puts "Seeing Users"
+puts "Seeding Users"
 User.create(username: "Albert", email: "albert@gmail.com", password: "password124")
 User.create(username: "Betty", email: "betty@gmail.com", password: "password124")
 User.create(username: "Carlton", email: "carlton@gmail.com", password: "password124")
 User.create(username: "Deb", email: "deb@gmail.com", password: "password124")
 User.create(username: "Ed", email: "ed@gmail.com", password: "password124")
 
-puts "Seeing Coins"
+puts "Seeding Coins"
 # Coin.create(name: "Bitcoin", symbol: "BTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "bitcoin" )
 # Coin.create(name: "Citcoin", symbol: "CTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "citcoin" )
 # Coin.create(name: "Ditcoin", symbol: "DTC", image_url: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", coin_api_id: "ditcoin" )
@@ -34,6 +34,14 @@ puts "Seeing Coins"
 #   "market_cap_rank"=>1,
 #   "fully_diluted_valuation"=>1
 
+
+
+#   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-
+#   / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \
+#  `-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'
+
+
+
 response = RestClient.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false")
 data = JSON.parse(response)
 data.each do |coin|
@@ -42,16 +50,22 @@ end
 
 
 
+#   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-
+#   / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \
+#  `-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'
 
 
-puts "Seeing Favorites"
+
+
+
+puts "Seeding Favorites"
 Favorite.create(user_id: 1, coin_id: 1)
 Favorite.create(user_id: 2, coin_id: 2)
 Favorite.create(user_id: 3, coin_id: 3)
 Favorite.create(user_id: 4, coin_id: 4)
 
 
-puts "Seeing Friendships"
+puts "Seeding Friendships"
 
 Friendship.create(friender_id: 1, friendee_id: 2)
 Friendship.create(friender_id: 2, friendee_id: 3)

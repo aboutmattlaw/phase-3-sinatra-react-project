@@ -104,13 +104,19 @@ class ApplicationController < Sinatra::Base
 
   
   
-  
-  
   post '/users' do #creates a new user (works)
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
     session[:user_id] = user.id
     user.to_json
   end
+
+
+
+
+
+
+
+
 
 
   post '/users' do #creates a new user (works)
@@ -133,11 +139,27 @@ class ApplicationController < Sinatra::Base
   #   friendship.to_json
   # end
 
+
+
+
+#   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-
+#   / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \
+#  `-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'
+
+
   post '/friendships' do #makes new friendships (works)
     friendship = Friendship.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
     user = User.find(friendship.friendee_id)
     user.to_json
   end  
+
+
+#   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-.   .-.-
+#   / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \ \ / / \
+#  `-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'   `-`-'
+
+
+
 
   delete '/friendship/:id' do #deletes specific friendships (works)
     friendship = Friendship.find(params[:id])
